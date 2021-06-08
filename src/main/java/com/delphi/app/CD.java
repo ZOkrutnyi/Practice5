@@ -2,7 +2,6 @@ package main.java.com.delphi.app;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
-import java.util.StringJoiner;
 
 @XmlRootElement(name = "CATALOG")
 public class CD  {
@@ -19,48 +18,31 @@ public class CD  {
     @Column(name = "YEAR",order = 6,type = "LocalDate")
     private LocalDate year;
 
-    public String getCompany() {
-        return company;
-    }
+
 
     public void setCompany(String company) {
         this.company = company;
     }
 
-    public String getTitle() {
-        return title;
-    }
+
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getArtist() {
-        return artist;
-    }
+
 
     public void setArtist(String artist) {
         this.artist = artist;
     }
 
-    public String getCountry() {
-        return country;
-    }
 
     public void setCountry(String country) {
         this.country = country;
     }
 
-    public float getPrice() {
-        return price;
-    }
-
     public void setPrice(float price) {
         this.price = price;
-    }
-
-    public LocalDate getYear() {
-        return year;
     }
 
     public void setYear(LocalDate year) {

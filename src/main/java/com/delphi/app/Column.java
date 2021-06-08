@@ -6,7 +6,7 @@ import java.lang.annotation.*;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @interface Column {
-    String name() default "Hide your heart";
-    int order() default 1;
-    String type() default "TITLE";
+    String name();
+    int order();
+    String type();
 }
