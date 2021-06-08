@@ -1,14 +1,23 @@
 package main.java.com.delphi.app;
 
-public class CD {
+import javax.xml.bind.annotation.XmlRootElement;
+import java.time.LocalDate;
+import java.util.StringJoiner;
+
+@XmlRootElement(name = "CATALOG")
+public class CD  {
+    @Column(name = "TITLE",order = 1,type = "String")
     private String title;
+    @Column(name = "ARTIST",order = 2,type = "String")
     private String artist;
-    @Column(type = "Country")
+    @Column(name = "COUNTRY",order = 3,type = "String")
     private String country;
+    @Column(name = "COMPANY",order = 4,type = "String")
     private String company;
-    @Column(type = "price")
+    @Column(name = "PRICE",order = 5,type = "Money")
     private float price;
-    private int year;
+    @Column(name = "YEAR",order = 6,type = "LocalDate")
+    private LocalDate year;
 
     public String getCompany() {
         return company;
@@ -50,20 +59,16 @@ public class CD {
         this.price = price;
     }
 
-    public int getYear() {
+    public LocalDate getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(LocalDate year) {
         this.year = year;
     }
 
     @Override
     public String toString() {
-        return  "title=" + title +
-                ", artist=" + artist +
-                ", country=" + country +
-                ", price=" + price +
-                ", year=" + year;
+        return title+","+artist+","+country+","+company+","+price+"$,"+year;
     }
 }
