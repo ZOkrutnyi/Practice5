@@ -1,10 +1,7 @@
 package main.java.com.delphi.app;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
-
-@XmlRootElement(name = "CATALOG")
-public class CD  {
+public class CD extends AbstractColumnData {
     @Column(name = "TITLE",order = 1,type = "String")
     private String title;
     @Column(name = "ARTIST",order = 2,type = "String")
@@ -47,6 +44,21 @@ public class CD  {
 
     public void setYear(LocalDate year) {
         this.year = year;
+    }
+
+    @Override
+    public String getValue(String key) throws IllegalAccessException {
+        return super.getValue(key);
+    }
+
+    @Override
+    public String[] getRow() {
+        return super.getRow();
+    }
+
+    @Override
+    public String[] getColumns() {
+        return super.getColumns();
     }
 
     @Override
