@@ -20,22 +20,24 @@ public abstract class AbstractColumnData {
     }
 
     public String[] getRow() {
-        final int COLUMN_ELEMENTS = 6;
-        String[] rows = new String[COLUMN_ELEMENTS];
+        String[] rows = new String[1];
         Field[] fields = CL.getDeclaredFields();
-        for (Field f : fields) {
-            f.setAccessible(true);
-            Column c = f.getAnnotation(Column.class);
-            if (c == null)
-                continue;
-            for (CD o : ELEMENTS) {
+        CD cd = ELEMENTS.get(0);
+        StringBuilder sb;
+            sb = new StringBuilder();
+            for (Field f : fields) {
+                f.setAccessible(true);
+                Column c = f.getAnnotation(Column.class);
                 try {
-                    rows[c.order() - 1] = f.get(o).toString();
+                    if (c == null)
+                        sb.append("null").append(';');
+                    else
+                        sb.append(c.type().equals("Money") ? f.get(cd) + "$" : f.get(cd)).append(';');
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
             }
-        }
+            rows[0] = sb.toString();
         return rows;
     }
 
@@ -51,14 +53,14 @@ public abstract class AbstractColumnData {
                 Column c = f.getAnnotation(Column.class);
                 try {
                     if (c == null)
-                        sb.append("null").append(',');
+                        sb.append("null").append(';');
                     else
-                        sb.append(c.type().equals("Money") ? f.get(cd) + "$" : f.get(cd)).append(',');
+                        sb.append(c.type().equals("Money") ? f.get(cd) + "$" : f.get(cd)).append(';');
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
             }
-            columns[itr++] = sb.replace(sb.length() - 1, sb.length(), "").toString();
+            columns[itr++] = sb.toString();
         }
         return columns;
     }
