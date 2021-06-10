@@ -6,12 +6,13 @@ import java.util.logging.Logger;
 
 public abstract class AbstractColumnData {
     private static final String XML_FILE_PATH = "cd_catalog.xml";
-    public static final List<CD> ELEMENTS = AppendElements.append(XML_FILE_PATH);
+    private static final List<CD> ELEMENTS = AppendElements.append(XML_FILE_PATH);
     private static final Class<CD> CD_CLASS = CD.class;
-    Logger logger = Logger.getLogger(getClass().getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
+    private static int ptr = 0;
+
     @SuppressWarnings("unused")
     public String getValue(String key) {
-
         Field[] fields = CD_CLASS.getDeclaredFields();
         for (Field f : fields) {
             Column c = f.getAnnotation(Column.class);
@@ -26,17 +27,18 @@ public abstract class AbstractColumnData {
         }
         return null;
     }
+
     @SuppressWarnings("unused")
     public String[] getRow() {
         String[] rows = new String[1];
         Field[] fields = CD_CLASS.getDeclaredFields();
-        CD cd = ELEMENTS.get(0);
+        CD cd = ptr < ELEMENTS.size() ? ELEMENTS.get(ptr++) : ELEMENTS.get(ptr = 0);
         StringBuilder sb = new StringBuilder();
         for (Field f : fields) {
             f.setAccessible(true);
             Column c = f.getAnnotation(Column.class);
             try {
-                sb.append(c!=null ? f.get(cd) : "null").append(';');
+                sb.append(c != null ? f.get(cd) : "null").append(';');
             } catch (IllegalAccessException | NullPointerException e) {
                 logger.severe("Exception at " + e.getStackTrace()[0]);
             }
@@ -44,6 +46,7 @@ public abstract class AbstractColumnData {
         rows[0] = sb.toString();
         return rows;
     }
+
     @SuppressWarnings("unused")
     public String[] getColumns() {
         String[] columns = new String[ELEMENTS.size()];
@@ -56,7 +59,7 @@ public abstract class AbstractColumnData {
                 f.setAccessible(true);
                 Column c = f.getAnnotation(Column.class);
                 try {
-                    sb.append(c!=null ? f.get(cd) : "null").append(';');
+                    sb.append(c != null ? f.get(cd) : "null").append(';');
                 } catch (IllegalAccessException | NullPointerException e) {
                     logger.severe("Exception at " + e.getStackTrace()[0]);
                 }
