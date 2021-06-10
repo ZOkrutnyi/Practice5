@@ -36,7 +36,7 @@ public class AppendElements {
                     cd.setArtist(eElement.getElementsByTagName("ARTIST").item(0).getTextContent());
                     cd.setCountry(eElement.getElementsByTagName("COUNTRY").item(0).getTextContent());
                     cd.setCompany(eElement.getElementsByTagName("COMPANY").item(0).getTextContent());
-                    cd.setPrice(Float.parseFloat(eElement.getElementsByTagName("PRICE").item(0).getTextContent()));
+                    cd.setPrice(eElement.getElementsByTagName("PRICE").item(0).getTextContent()+"$");
                     cd.setYear(LocalDate.ofYearDay(Integer.parseInt(eElement.getElementsByTagName("YEAR").item(0).getTextContent()),21));
                     cds.add(cd);
                 }
