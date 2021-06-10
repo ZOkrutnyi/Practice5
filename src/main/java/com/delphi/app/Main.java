@@ -8,8 +8,7 @@ public class Main {
     public static void main(String[] args) {
         ParseCSV parseCSV = new ParseCSV();
         CD cds = new CD();
-        for (int i = 0; i < 38; i++) {
-            parseCSV.parseToCSV(cds.getRow(), CSV_FILE_PATH);
+            parseCSV.parseToCSV(cds.getColumns(), CSV_FILE_PATH);
         }
     }
-}
+

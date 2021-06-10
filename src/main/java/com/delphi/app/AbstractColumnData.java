@@ -9,7 +9,7 @@ public abstract class AbstractColumnData {
     private static final List<CD> ELEMENTS = AppendElements.append(XML_FILE_PATH);
     private static final Class<CD> CD_CLASS = CD.class;
     private final Logger logger = Logger.getLogger(getClass().getName());
-    private static int ptr = 0;
+    private static int nextIndex = 0;
 
     @SuppressWarnings("unused")
     public String getValue(String key) {
@@ -32,17 +32,9 @@ public abstract class AbstractColumnData {
     public String[] getRow() {
         String[] rows = new String[1];
         Field[] fields = CD_CLASS.getDeclaredFields();
-        CD cd = ptr < ELEMENTS.size() ? ELEMENTS.get(ptr++) : ELEMENTS.get(ptr = 0);
+        CD cd = nextIndex < ELEMENTS.size() ? ELEMENTS.get(nextIndex++) : ELEMENTS.get(nextIndex = 0);
         StringBuilder sb = new StringBuilder();
-        for (Field f : fields) {
-            f.setAccessible(true);
-            Column c = f.getAnnotation(Column.class);
-            try {
-                sb.append(c != null ? f.get(cd) : "null").append(';');
-            } catch (IllegalAccessException | NullPointerException e) {
-                logger.severe("Exception at " + e.getStackTrace()[0]);
-            }
-        }
+        addToArray(fields, sb, cd);
         rows[0] = sb.toString();
         return rows;
     }
@@ -55,18 +47,22 @@ public abstract class AbstractColumnData {
         StringBuilder sb;
         for (CD cd : ELEMENTS) {
             sb = new StringBuilder();
-            for (Field f : fields) {
-                f.setAccessible(true);
-                Column c = f.getAnnotation(Column.class);
-                try {
-                    sb.append(c != null ? f.get(cd) : "null").append(';');
-                } catch (IllegalAccessException | NullPointerException e) {
-                    logger.severe("Exception at " + e.getStackTrace()[0]);
-                }
-            }
+            addToArray(fields, sb, cd);
             columns[itr++] = sb.toString();
         }
         return columns;
+    }
+
+    private void addToArray(Field[] fields, StringBuilder sb, CD cd) {
+        for (Field f : fields) {
+            f.setAccessible(true);
+            Column c = f.getAnnotation(Column.class);
+            try {
+                sb.append(c != null ? f.get(cd) : "null").append(';');
+            } catch (IllegalAccessException | NullPointerException e) {
+                logger.severe("Exception at " + e.getStackTrace()[0]);
+            }
+        }
     }
 }
 
