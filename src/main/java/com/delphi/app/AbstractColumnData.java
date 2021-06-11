@@ -32,7 +32,8 @@ public abstract class AbstractColumnData {
     public String[] getRow() {
         String[] rows = new String[1];
         Field[] fields = CD_CLASS.getDeclaredFields();
-        CD cd = nextIndex < ELEMENTS.size() ? ELEMENTS.get(nextIndex++) : ELEMENTS.get(nextIndex = 0);
+        nextIndex = ELEMENTS.size() > nextIndex ? nextIndex++ : 0;
+        CD cd = ELEMENTS.get(nextIndex);
         StringBuilder sb = new StringBuilder();
         addToArray(fields, sb, cd);
         rows[0] = sb.toString();

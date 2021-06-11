@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AppendElements {
+    private AppendElements()
+    {}
     public static List<CD> append(String filepath)
     {
         List<CD> cds = new ArrayList<>();
