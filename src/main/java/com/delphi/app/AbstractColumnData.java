@@ -44,9 +44,9 @@ public abstract class AbstractColumnData {
         String[] columns = new String[ELEMENTS.size()];
         Field[] fields = CD_CLASS.getDeclaredFields();
         int itr = 0;
-        StringBuilder sb;
+
         for (CD cd : ELEMENTS) {
-            sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             addToArray(fields, sb, cd);
             columns[itr++] = sb.toString();
         }
@@ -56,9 +56,9 @@ public abstract class AbstractColumnData {
     private void addToArray(Field[] fields, StringBuilder sb, CD cd) {
         for (Field f : fields) {
             f.setAccessible(true);
-            Column c = f.getAnnotation(Column.class);
+            boolean isAnnotated = f.isAnnotationPresent(Column.class);
             try {
-                sb.append(c != null ? f.get(cd) : "null").append(';');
+                sb.append(isAnnotated ? f.get(cd) : "null").append(';');
             } catch (IllegalAccessException | NullPointerException e) {
                 logger.severe("Exception at " + e.getStackTrace()[0]);
             }

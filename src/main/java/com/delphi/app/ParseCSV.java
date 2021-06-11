@@ -13,8 +13,8 @@ public class ParseCSV {
         }
     }
     @SuppressWarnings("unused")
-    public void parseToCSV(String[] str, String filename) {
-        for (String s : str) {
+    public void parseToCSV(String[] strings, String filename) {
+        for (String s : strings) {
             try (FileWriter fw = new FileWriter(filename, true)) {
                 fw.append(s).append("\n");
             } catch (IOException e) {
