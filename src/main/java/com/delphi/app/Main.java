@@ -1,14 +1,18 @@
 package main.java.com.delphi.app;
 
 
+import java.util.List;
+
 public class Main {
 
     private static final String CSV_FILE_PATH = "newCSV.csv";
+    private static final String XML_FILE_PATH = "cd_catalog.xml";
 
     public static void main(String[] args) {
-        ParseCSV parseCSV = new ParseCSV();
-        CD cds = new CD();
-            parseCSV.parseToCSV(cds.getColumns(), CSV_FILE_PATH);
-        }
+        CSVParser csv = new CSVParser();
+        CD c = new CD();
+        List<? extends AbstractColumnData> cds = AppendElements.append(XML_FILE_PATH);
+        csv.parse(c.getColumns(cds),CSV_FILE_PATH);
+    }
     }
 
