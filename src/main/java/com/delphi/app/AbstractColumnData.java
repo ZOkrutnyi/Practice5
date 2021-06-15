@@ -36,7 +36,7 @@ public abstract class AbstractColumnData {
     public String[] getColumns(List<? extends AbstractColumnData> list) {
         String[] columns = new String[list.size()];
         int itr = 0;
-        for (AbstractColumnData acd: list) {
+        for (AbstractColumnData acd : list) {
             columns[itr++] = acd.getRow()[0];
         }
         return columns;

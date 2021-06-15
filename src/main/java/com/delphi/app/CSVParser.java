@@ -12,6 +12,7 @@ public class CSVParser {
             e.printStackTrace();
         }
     }
+
     @SuppressWarnings("unused")
     public void parse(String[] strings, String filename) {
         for (String s : strings) {

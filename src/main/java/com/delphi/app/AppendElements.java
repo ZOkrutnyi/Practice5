@@ -15,11 +15,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppendElements {
-    private AppendElements()
-    {}
-    public static List<CD> append(String filepath)
-    {
+public final class AppendElements {
+    private AppendElements() {
+    }
+
+    public static List<CD> append(String filepath) {
         List<CD> cds = new ArrayList<>();
         try {
             File fXmlFile = new File(filepath);
@@ -38,8 +38,8 @@ public class AppendElements {
                     cd.setArtist(eElement.getElementsByTagName("ARTIST").item(0).getTextContent());
                     cd.setCountry(eElement.getElementsByTagName("COUNTRY").item(0).getTextContent());
                     cd.setCompany(eElement.getElementsByTagName("COMPANY").item(0).getTextContent());
-                    cd.setPrice(eElement.getElementsByTagName("PRICE").item(0).getTextContent()+"$");
-                    cd.setYear(LocalDate.ofYearDay(Integer.parseInt(eElement.getElementsByTagName("YEAR").item(0).getTextContent()),21));
+                    cd.setPrice(eElement.getElementsByTagName("PRICE").item(0).getTextContent() + "$");
+                    cd.setYear(LocalDate.ofYearDay(Integer.parseInt(eElement.getElementsByTagName("YEAR").item(0).getTextContent()), 21));
                     cds.add(cd);
                 }
             }
