@@ -42,6 +42,6 @@ public class CD extends AbstractColumnData {
 
     @Override
     public String toString() {
-        return title + "," + artist + "," + country + "," + company + "," + price + "$," + year;
+        return title + "\n" + artist + "\n" + country + "\n" + company + "\n" + price + "\n" + year+"\n";
     }
 }

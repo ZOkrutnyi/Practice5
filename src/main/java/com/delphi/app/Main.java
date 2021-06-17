@@ -10,9 +10,8 @@ public class Main {
 
     public static void main(String[] args) {
         CSVParser csv = new CSVParser();
-        CD c = new CD();
         List<CD> cds = AppendElements.append(XML_FILE_PATH);
-        csv.parse(c.getColumns(cds), CSV_FILE_PATH);
+        csv.parse(cds.get(0).getRow(), CSV_FILE_PATH);
     }
 }
 

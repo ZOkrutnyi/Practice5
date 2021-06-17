@@ -8,49 +8,42 @@ public abstract class AbstractColumnData {
     @SuppressWarnings("unused")
     public String getValue(String key) {
         Field[] fields = this.getClass().getDeclaredFields();
-        for (Field f : fields) {
-            Column c = f.getAnnotation(Column.class);
-            f.setAccessible(true);
-            if (c.name().equals(key.toUpperCase())) {
-                try {
+        try {
+            for (Field f : fields) {
+                f.setAccessible(true);
+                Column c = f.getAnnotation(Column.class);
+                if (c.name().equals(key.toUpperCase())) {
                     return f.get(this).toString();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
                 }
             }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
         return null;
     }
 
     @SuppressWarnings("unused")
-    public String[] getRow() {
-        String[] rows = new String[1];
+    public String getRow() {
         Field[] fields = this.getClass().getDeclaredFields();
         StringBuilder sb = new StringBuilder();
         addToArray(fields, sb);
-        rows[0] = sb.toString();
-        return rows;
+        return sb.toString();
     }
 
     @SuppressWarnings("unused")
     public String[] getColumns(List<? extends AbstractColumnData> list) {
-        String[] columns = new String[list.size()];
-        int itr = 0;
-        for (AbstractColumnData acd : list) {
-            columns[itr++] = acd.getRow()[0];
-        }
-        return columns;
+        return list.stream().map(AbstractColumnData::getRow).toArray(String[]::new);
     }
 
     private void addToArray(Field[] fields, StringBuilder sb) {
-        for (Field f : fields) {
-            f.setAccessible(true);
-            boolean isAnnotated = f.isAnnotationPresent(Column.class);
-            try {
+        try {
+            for (Field f : fields) {
+                f.setAccessible(true);
+                boolean isAnnotated = f.isAnnotationPresent(Column.class);
                 sb.append(isAnnotated ? f.get(this) : "null").append(';');
-            } catch (IllegalAccessException | NullPointerException e) {
-                e.printStackTrace();
             }
+        } catch (IllegalAccessException | NullPointerException e) {
+            e.printStackTrace();
         }
     }
 }
