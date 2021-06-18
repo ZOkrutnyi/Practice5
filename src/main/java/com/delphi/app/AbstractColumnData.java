@@ -12,9 +12,8 @@ public abstract class AbstractColumnData {
             for (Field f : fields) {
                 f.setAccessible(true);
                 Column c = f.getAnnotation(Column.class);
-                if (c.name().equals(key.toUpperCase())) {
+                if (c.name().equals(key.toUpperCase()))
                     return f.get(this).toString();
-                }
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();
@@ -23,19 +22,19 @@ public abstract class AbstractColumnData {
     }
 
     @SuppressWarnings("unused")
-    public String getRow() {
+    public String[] getRow() {
         Field[] fields = this.getClass().getDeclaredFields();
         StringBuilder sb = new StringBuilder();
-        addToArray(fields, sb);
+        createRow(fields, sb);
         return sb.toString();
     }
 
     @SuppressWarnings("unused")
-    public String[] getColumns(List<? extends AbstractColumnData> list) {
+    public String[] getColumns() {
         return list.stream().map(AbstractColumnData::getRow).toArray(String[]::new);
     }
 
-    private void addToArray(Field[] fields, StringBuilder sb) {
+    private void createRow(Field[] fields, StringBuilder sb) {
         try {
             for (Field f : fields) {
                 f.setAccessible(true);

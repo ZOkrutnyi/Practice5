@@ -3,6 +3,8 @@ package main.java.com.delphi.app;
 
 import java.util.List;
 
+import static main.java.com.delphi.app.AbstractColumnData.getColumns;
+
 public class Main {
 
     private static final String CSV_FILE_PATH = "newCSV.csv";
@@ -11,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         CSVParser csv = new CSVParser();
         List<CD> cds = AppendElements.append(XML_FILE_PATH);
-        csv.parse(cds.get(0).getRow(), CSV_FILE_PATH);
+        csv.parse(getColumns(cds), CSV_FILE_PATH);
     }
 }
 

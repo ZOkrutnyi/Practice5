@@ -15,12 +15,13 @@ public class CSVParser {
 
     @SuppressWarnings("unused")
     public void parse(String[] strings, String filename) {
-        for (String s : strings) {
-            try (FileWriter fw = new FileWriter(filename, true)) {
+
+        try (FileWriter fw = new FileWriter(filename, true)) {
+            for (String s : strings) {
                 fw.append(s).append("\n");
-            } catch (IOException e) {
-                e.printStackTrace();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
