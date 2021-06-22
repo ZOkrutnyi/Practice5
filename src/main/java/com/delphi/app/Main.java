@@ -1,9 +1,6 @@
 package main.java.com.delphi.app;
 
-
 import java.util.List;
-
-import static main.java.com.delphi.app.AbstractColumnData.getColumns;
 
 public class Main {
 
@@ -13,7 +10,9 @@ public class Main {
     public static void main(String[] args) {
         CSVParser csv = new CSVParser();
         List<CD> cds = AppendElements.append(XML_FILE_PATH);
-        csv.parse(getColumns(cds), CSV_FILE_PATH);
+        for (CD cd : cds) {
+            csv.parse(cd.getRow(), CSV_FILE_PATH);
+        }
     }
 }
 

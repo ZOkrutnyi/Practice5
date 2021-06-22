@@ -18,8 +18,9 @@ public class CSVParser {
 
         try (FileWriter fw = new FileWriter(filename, true)) {
             for (String s : strings) {
-                fw.append(s).append("\n");
+                fw.append(s).append(';');
             }
+            fw.append("\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
