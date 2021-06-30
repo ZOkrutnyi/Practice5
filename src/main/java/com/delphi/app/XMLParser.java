@@ -15,8 +15,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class AppendElements {
-    private AppendElements() {
+public final class XMLParser {
+    private XMLParser() {
     }
 
     public static List<CD> append(String filepath) {
