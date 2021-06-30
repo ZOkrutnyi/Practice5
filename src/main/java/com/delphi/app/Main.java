@@ -10,7 +10,10 @@ public class Main {
     public static void main(String[] args) throws IllegalAccessException {
         CSVParser csv = new CSVParser();
         List<CD> cds = XMLParser.append(XML_FILE_PATH);
-        System.out.println(cds.get(1).getValue("ARTIST"));
+        for(CD cd: cds)
+        {
+            csv.parse(cd.getRow(),CSV_FILE_PATH);
+        }
     }
 }
 

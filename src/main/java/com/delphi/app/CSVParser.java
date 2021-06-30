@@ -17,10 +17,13 @@ public class CSVParser {
     public void parse(String[] strings, String filename) {
 
         try (FileWriter fw = new FileWriter(filename, true)) {
-            for (String s : strings) {
-                fw.append(s).append(';');
+            for (int i = 0; i<strings.length;i++) {
+                if(i==strings.length-1) {
+                    fw.append(strings[i]).append("\n");
+                    break;
+                }
+                fw.append(strings[i]).append(';');
             }
-            fw.append("\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
