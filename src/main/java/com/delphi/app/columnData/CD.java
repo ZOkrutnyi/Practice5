@@ -1,4 +1,4 @@
-package main.java.com.delphi.app;
+package main.java.com.delphi.app.columnData;
 
 import java.time.LocalDate;
 
@@ -9,7 +9,6 @@ public class CD extends AbstractColumnData {
     private String artist;
     @Column(name = "COUNTRY", order = 3, type = "String")
     private String country;
-    private String country1;
     @Column(name = "COMPANY", order = 4, type = "String")
     private String company;
     @Column(name = "PRICE", order = 5, type = "Money")
