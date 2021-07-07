@@ -1,4 +1,0 @@
-
-–
-java:S1130
-"yRemove the declaration of thrown exception 'java.lang.IllegalAccessException', as it cannot be thrown from method's body.(Ú „›8“ßÙá¥/
