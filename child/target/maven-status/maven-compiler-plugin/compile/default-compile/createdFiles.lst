@@ -1,0 +1,9 @@
+com\delphi\app\columnData\Column.class
+com\delphi\app\columnData\AbstractColumnData.class
+com\delphi\app\parsers\CSVParser.class
+com\delphi\app\columnData\CD.class
+com\delphi\app\parsers\XLSParser.class
+com\delphi\app\parsers\XMLParser.class
+com\delphi\app\parsers\AbstractParser.class
+com\delphi\app\parsers\XLSXParser.class
+com\delphi\app\main\Main.class
