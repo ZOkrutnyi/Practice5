@@ -1,6 +1,6 @@
-package com.delphi.app.parsers;
+package com.delphi.app.writers;
 
-public class XLSParser extends AbstractParser{
+public class XLSWriter extends AbstractWriter {
 
     @Override
     protected void setDefaultDelimiter() {

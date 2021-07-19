@@ -1,6 +1,6 @@
-package com.delphi.app.parsers;
+package com.delphi.app.writers;
 
-public class CSVParser extends AbstractParser{
+public class CSVWriter extends AbstractWriter {
     @Override
     protected void setDefaultDelimiter() {
         defaultDelimiter = ';';

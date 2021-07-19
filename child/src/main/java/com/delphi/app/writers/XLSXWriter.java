@@ -1,4 +1,4 @@
-package com.delphi.app.parsers;
+package com.delphi.app.writers;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
@@ -7,12 +7,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
 
-public class XLSXParser extends AbstractParser {
+public class XLSXWriter extends AbstractWriter {
     static int rowNum = 0;
     private static final int START_POINT = 0;
 
     @Override
-    public void parse(String str, String filename) {
+    public void write(String str, String filename) {
         try (Workbook book = new HSSFWorkbook()) {
             Sheet sheet = book.createSheet("cds");
 
@@ -27,7 +27,7 @@ public class XLSXParser extends AbstractParser {
     }
 
     @Override
-    public void parse(String[] strings, String fileName) {
+    public void write(String[] strings, String fileName) {
         if (!new File(fileName).exists()) {
             writeAtTheBeginning(strings, fileName);
         } else {

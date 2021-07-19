@@ -1,12 +1,12 @@
-package com.delphi.app.parsers;
+package com.delphi.app.writers;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
-public abstract class AbstractParser {
+public abstract class AbstractWriter {
     char defaultDelimiter;
     @SuppressWarnings("unused")
-    public void parse(String str, String filename) {
+    public void write(String str, String filename) {
         try (FileWriter fw = new FileWriter(filename, true)) {
             fw.append(str).append('\n');
         } catch (IOException e) {
@@ -15,7 +15,7 @@ public abstract class AbstractParser {
     }
 
     @SuppressWarnings("unused")
-    public void parse(String[] strings, String filename) throws IOException {
+    public void write(String[] strings, String filename) throws IOException {
         setDefaultDelimiter();
         try (FileWriter fw = new FileWriter(filename, true)) {
             for (int i = 0; i<strings.length;i++) {
