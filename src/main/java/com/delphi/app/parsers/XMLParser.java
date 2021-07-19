@@ -1,5 +1,6 @@
-package main.java.com.delphi.app;
+package main.java.com.delphi.app.parsers;
 
+import main.java.com.delphi.app.columnData.CD;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -15,8 +16,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class AppendElements {
-    private AppendElements() {
+public class XMLParser {
+    private XMLParser() {
     }
 
     public static List<CD> append(String filepath) {
