@@ -1,5 +1,6 @@
 package com.delphi.app.writers;
 
+
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -15,22 +16,20 @@ public abstract class AbstractWriter {
     }
 
     @SuppressWarnings("unused")
-    public void write(String[] strings, String filename) throws IOException {
-        setDefaultDelimiter();
+    public void write(String[] strings, String filename) {
+        setDefaultDelimiter(';');
         try (FileWriter fw = new FileWriter(filename, true)) {
-            for (int i = 0; i<strings.length;i++) {
-                if(i==strings.length-1) {
-                    fw.append(strings[i]).append("\n");
-                    break;
-                }
-                fw.append(strings[i]).append(defaultDelimiter);
+            for (String string : strings) {
+                fw.append(string).append(defaultDelimiter);
             }
+            fw.append("\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    protected void setDefaultDelimiter() {
+    protected void setDefaultDelimiter(char delimiter) {
+        this.defaultDelimiter = delimiter;
     }
 }
 
