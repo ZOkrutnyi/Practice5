@@ -17,7 +17,7 @@ public class Main {
     private static final String XML_FILE_PATH = "cd_catalog.xml";
 
     public static void main(String[] args) {
-        String pathToWrite = "XLS_FILE_PATH";
+        String pathToWrite = CSV_FILE_PATH;
         AbstractWriter writer = getWriterByPath(pathToWrite);
         for (CD cd: XMLParser.append(XML_FILE_PATH)) {
             writer.write(cd.getRow(),pathToWrite);
