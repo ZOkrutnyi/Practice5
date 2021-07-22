@@ -7,6 +7,8 @@ import com.delphi.app.writers.CSVWriter;
 import com.delphi.app.writers.XLSWriter;
 import com.delphi.app.writers.XLSXWriter;
 
+import java.util.List;
+
 public class Main {
     @SuppressWarnings("unused")
     private static final String CSV_FILE_PATH = "newCSV.csv";
@@ -17,11 +19,13 @@ public class Main {
     private static final String XML_FILE_PATH = "cd_catalog.xml";
 
     public static void main(String[] args) {
-        String pathToWrite = CSV_FILE_PATH;
-        AbstractWriter writer = getWriterByPath(pathToWrite);
-        for (CD cd: XMLParser.append(XML_FILE_PATH)) {
-            writer.write(cd.getRow(),pathToWrite);
-        }
+        String pathWriteTo = XLSX_FILE_PATH;
+        AbstractWriter writer = getWriterByPath(pathWriteTo);
+        List<CD> cds = XMLParser.append(XML_FILE_PATH);
+//        for (CD cd: XMLParser.append(XML_FILE_PATH)) {
+//            writer.write(cd.getRow(),pathWriteTo);
+//        }
+        System.out.println(cds.get(0).getValue("ARTIST"));
     }
 
     static AbstractWriter getWriterByPath(String path) {

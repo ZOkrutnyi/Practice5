@@ -1,6 +1,5 @@
 package com.delphi.app.writers;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -12,21 +11,6 @@ public class XLSXWriter extends AbstractWriter {
     private static final int START_POINT = 0;
 
     @Override
-    public void write(String str, String filename) {
-        try (Workbook book = new HSSFWorkbook()) {
-            Sheet sheet = book.createSheet("cds");
-
-            // Нумерация начинается с нуля
-            Row row = sheet.createRow(sheet.getLastRowNum() + 1);
-            row.createCell(0).setCellValue(str);
-            sheet.autoSizeColumn(1);
-            book.write(new FileOutputStream(filename));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public void write(String[] strings, String fileName) {
         if (!new File(fileName).exists()) {
             writeAtTheBeginning(strings, fileName);
@@ -35,7 +19,7 @@ public class XLSXWriter extends AbstractWriter {
         }
     }
 
-    private static void writeToCell(String[] arr, String fileName) {
+    private void writeToCell(String[] arr, String fileName) {
         try (
                 FileInputStream xlsxFile = new FileInputStream(fileName);
                 XSSFWorkbook cdBook = new XSSFWorkbook(xlsxFile);
@@ -48,7 +32,7 @@ public class XLSXWriter extends AbstractWriter {
         }
     }
 
-    private static void writeAtTheBeginning(String[] arr, String fileName) {
+    private void writeAtTheBeginning(String[] arr, String fileName) {
         try (
                 XSSFWorkbook workbook = new XSSFWorkbook();
                 FileOutputStream outputStream = new FileOutputStream(fileName)) {
@@ -60,7 +44,7 @@ public class XLSXWriter extends AbstractWriter {
         }
     }
 
-    private static void write(String[] arr, XSSFWorkbook workbook, FileOutputStream outputStream, XSSFSheet sheet) throws IOException {
+    private void write(String[] arr, XSSFWorkbook workbook, FileOutputStream outputStream, XSSFSheet sheet) throws IOException {
         rowNum = sheet.getLastRowNum();
         Row row = sheet.createRow(++rowNum);
         for (int i = 0; i < arr.length; i++) {

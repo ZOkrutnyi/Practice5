@@ -7,15 +7,6 @@ import java.io.IOException;
 public abstract class AbstractWriter {
     char defaultDelimiter;
     @SuppressWarnings("unused")
-    public void write(String str, String filename) {
-        try (FileWriter fw = new FileWriter(filename, true)) {
-            fw.append(str).append('\n');
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @SuppressWarnings("unused")
     public void write(String[] strings, String filename) {
         setDefaultDelimiter(';');
         try (FileWriter fw = new FileWriter(filename, true)) {

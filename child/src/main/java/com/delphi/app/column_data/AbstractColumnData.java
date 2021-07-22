@@ -8,40 +8,41 @@ import java.util.stream.Collectors;
 public abstract class AbstractColumnData {
 
     @SuppressWarnings("unused")
-    public String getValue(String key) throws IllegalAccessException {
-        Field[] fields = this.getClass().getDeclaredFields();
-        for (Field field : checkFields(fields)) {
-            if (key.equals(field.getAnnotation(Column.class).name())) {
-                return field.get(this).toString();
+    public String getValue(String key) {
+        for (Field f : getCheckedFields()) {
+            if (key.equalsIgnoreCase(f.getName())) {
+                return getFieldValue(f);
             }
         }
-        return "not found";
+        return "value not found";
     }
 
     @SuppressWarnings("unused")
     public String[] getRow() {
-        ArrayList<String> rows = new ArrayList<>();
-        checkFields(this.getClass().getDeclaredFields())
-                .forEach(field -> {
-                    try {
-                        rows.add(field.get(this).toString());
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-                });
-        return rows.toArray(new String[0]);
+        return getCheckedFields()
+                .stream()
+                .map(this::getFieldValue)
+                .toArray(String[]::new);
     }
 
-    private ArrayList<Field> checkFields(Field[] fields) {
-        return Arrays.stream(fields)
+    private ArrayList<Field> getCheckedFields() {
+        return Arrays.stream(this.getClass().getDeclaredFields())
                 .peek(field -> field.setAccessible(true))
                 .filter(field -> field.isAnnotationPresent(Column.class))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
+    private String getFieldValue(Field field) {
+        try {
+            return field.get(this).toString();
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException("Illegal access");
+        }
+    }
+
     @SuppressWarnings("unused")
     public String[] getColumns() {
-        return checkFields(this.getClass().getDeclaredFields())
+        return getCheckedFields()
                 .stream()
                 .map(f -> f.getAnnotation(Column.class).name())
                 .toArray(String[]::new);
