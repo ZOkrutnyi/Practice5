@@ -27,12 +27,12 @@ class XLSXWriter implements Writer {
         try (
                 FileInputStream xlsxFile = new FileInputStream(fileName);
                 XSSFWorkbook cdBook = new XSSFWorkbook(xlsxFile);
-                FileOutputStream outputFile = new FileOutputStream(fileName);
+                FileOutputStream outputFile = new FileOutputStream(fileName)
         ) {
             XSSFSheet sheet = cdBook.getSheetAt(START_POINT);
             write(arr, cdBook, outputFile, sheet);
         } catch (IOException e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
     }
 

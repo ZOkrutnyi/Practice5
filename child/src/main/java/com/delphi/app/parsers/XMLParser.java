@@ -1,6 +1,5 @@
 package com.delphi.app.parsers;
 
-import com.delphi.app.data.AbstractColumnData;
 import com.delphi.app.data.CD;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

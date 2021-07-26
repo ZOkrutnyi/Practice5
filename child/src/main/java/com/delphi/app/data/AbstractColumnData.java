@@ -36,7 +36,7 @@ public abstract class AbstractColumnData {
         try {
             return field.get(this).toString();
         } catch (IllegalAccessException e) {
-            throw new RuntimeException("Illegal access");
+            throw new IllegalArgumentException("Illegal access");
         }
     }
 
