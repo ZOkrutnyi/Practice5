@@ -1,4 +1,4 @@
-package com.delphi.app.column_data;
+package com.delphi.app.data;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

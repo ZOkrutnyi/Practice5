@@ -1,4 +1,4 @@
-package com.delphi.app.column_data;
+package com.delphi.app.data;
 
 import java.time.LocalDate;
 

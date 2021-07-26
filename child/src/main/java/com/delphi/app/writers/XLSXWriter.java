@@ -6,16 +6,20 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
 
-public class XLSXWriter extends AbstractWriter {
-    static int rowNum = 0;
+class XLSXWriter implements Writer {
     private static final int START_POINT = 0;
+    private final String filepath;
+    protected XLSXWriter(String filepath)
+    {
+        this.filepath = filepath;
+    }
 
     @Override
-    public void write(String[] strings, String fileName) {
-        if (!new File(fileName).exists()) {
-            writeAtTheBeginning(strings, fileName);
+    public void write(String[] strings) {
+        if (!new File(filepath).exists()) {
+            writeAtTheBeginning(strings, filepath);
         } else {
-            writeToCell(strings, fileName);
+            writeToCell(strings, filepath);
         }
     }
 
@@ -45,7 +49,7 @@ public class XLSXWriter extends AbstractWriter {
     }
 
     private void write(String[] arr, XSSFWorkbook workbook, FileOutputStream outputStream, XSSFSheet sheet) throws IOException {
-        rowNum = sheet.getLastRowNum();
+        int rowNum = sheet.getLastRowNum();
         Row row = sheet.createRow(++rowNum);
         for (int i = 0; i < arr.length; i++) {
             row.createCell(i).setCellValue(arr[i]);

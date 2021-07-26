@@ -1,13 +1,7 @@
 package com.delphi.app.main;
 
-import com.delphi.app.column_data.CD;
 import com.delphi.app.parsers.*;
-import com.delphi.app.writers.AbstractWriter;
-import com.delphi.app.writers.CSVWriter;
-import com.delphi.app.writers.XLSWriter;
-import com.delphi.app.writers.XLSXWriter;
-
-import java.util.List;
+import com.delphi.app.writers.*;
 
 public class Main {
     @SuppressWarnings("unused")
@@ -19,27 +13,13 @@ public class Main {
     private static final String XML_FILE_PATH = "cd_catalog.xml";
 
     public static void main(String[] args) {
-        String pathWriteTo = XLSX_FILE_PATH;
-        AbstractWriter writer = getWriterByPath(pathWriteTo);
-        List<CD> cds = XMLParser.append(XML_FILE_PATH);
-//        for (CD cd: XMLParser.append(XML_FILE_PATH)) {
-//            writer.write(cd.getRow(),pathWriteTo);
-//        }
-        System.out.println(cds.get(0).getValue("ARTIST"));
-    }
 
-    static AbstractWriter getWriterByPath(String path) {
-        if (path.contains(".csv")) {
-            return new CSVWriter();
-        }
-        else if (path.contains(".xlsx")) {
-            return new XLSXWriter();
-        }
-        else if (path.contains(".xls")) {
-            return new XLSWriter();
-        } else {
-            throw new IllegalArgumentException("illegal format");
-        }
+        ParserFactory parserFactory = new ParserFactory(XML_FILE_PATH);
+        Parser parser = parserFactory.createParser();
+        WriterFactory writerFactory = new WriterFactory(CSV_FILE_PATH);
+        Writer writer = writerFactory.createWriter();
+
+        Executor.execute(parser,writer);
     }
 }
 

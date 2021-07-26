@@ -1,8 +1,27 @@
 package com.delphi.app.writers;
 
-public class XLSWriter extends AbstractWriter {
+import java.io.FileWriter;
+import java.io.IOException;
+
+class XLSWriter implements Writer {
+
+    private static final char DELIMITER = '\t';
+    private final String filepath;
+
+    protected XLSWriter(String filepath)
+    {
+        this.filepath = filepath;
+    }
+
     @Override
-    protected void setDefaultDelimiter(char delimiter) {
-        super.setDefaultDelimiter('\t');
+    public void write(String[] strings) {
+        try (FileWriter fw = new FileWriter(filepath, true)) {
+            for (String string : strings) {
+                fw.append(string).append(DELIMITER);
+            }
+            fw.append("\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

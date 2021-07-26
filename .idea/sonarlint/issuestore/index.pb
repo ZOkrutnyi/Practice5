@@ -125,5 +125,7 @@ g
 Practice5.iml,6\c\6c70a4b745b84eaaec2d0022035aa227558fd5a0
 =
 child/pom.xml,7\5\7549128aef84b129beb2a28663f0991dc608236a
-K
-child/src/main/java/app.uml,8\c\8c1ab5dd825d30d6d4d82165eecce3a5384cb29c
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+>
+cd_catalog.xml,3\a\3a50f81a7cde2f01d2ab79f30e63157309d80ce7

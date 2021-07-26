@@ -1,6 +1,7 @@
 package com.delphi.app.parsers;
 
-import com.delphi.app.column_data.CD;
+import com.delphi.app.data.AbstractColumnData;
+import com.delphi.app.data.CD;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -16,11 +17,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XMLParser {
-    private XMLParser() {
+class XMLParser implements Parser {
+    private final String filepath;
+
+    protected XMLParser(String filepath) {
+        this.filepath = filepath;
     }
 
-    public static List<CD> append(String filepath) {
+    public List<CD> append() {
         List<CD> cds = new ArrayList<>();
         try {
             File fXmlFile = new File(filepath);
