@@ -10,7 +10,7 @@ public class Main {
     private static final String XLS_FILE_PATH = "newXLS.xls";
     @SuppressWarnings("unused")
     private static final String XLSX_FILE_PATH = "newXLSX.xlsx";
-    private static final String XML_FILE_PATH = "cd_catalog.xml";
+    private static final String XML_FILE_PATH = "catalog_CD.xml";
 
     public static void main(String[] args) {
 

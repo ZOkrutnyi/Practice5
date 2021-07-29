@@ -8,7 +8,7 @@
     <node x="0.0" y="743.0">main.java.com.delphi.app.writers.XLSXWriter</node>
     <node x="640.0" y="553.0">main.java.com.delphi.app.data.Column</node>
     <node x="207.0" y="775.0">main.java.com.delphi.app.writers.XLSWriter</node>
-    <node x="0.0" y="906.0">main.java.com.delphi.app.parsers.XMLParser</node>
+    <node x="0.0" y="906.0">main.java.com.delphi.app.parsers.XMLParserCD</node>
     <node x="0.0" y="0.0">main.java.com.delphi.app.data.AbstractColumnData</node>
     <node x="411.0" y="775.0">main.java.com.delphi.app.writers.CSVWriter</node>
   </nodes>
