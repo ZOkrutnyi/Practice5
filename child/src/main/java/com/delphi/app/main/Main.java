@@ -1,6 +1,8 @@
 package com.delphi.app.main;
 
 import com.delphi.app.parsers.*;
+import com.delphi.app.readers.Reader;
+import com.delphi.app.readers.ReaderFactory;
 import com.delphi.app.writers.*;
 
 public class Main {
@@ -13,13 +15,14 @@ public class Main {
     private static final String XML_FILE_PATH = "catalog_CD.xml";
 
     public static void main(String[] args) {
-
+        ReaderFactory readerFactory = new ReaderFactory(XML_FILE_PATH);
+        Reader reader = readerFactory.createReader();
         ParserFactory parserFactory = new ParserFactory(XML_FILE_PATH);
         Parser parser = parserFactory.createParser();
         WriterFactory writerFactory = new WriterFactory(CSV_FILE_PATH);
         Writer writer = writerFactory.createWriter();
-
-        Executor.execute(parser,writer);
+        System.out.println(reader.byteToString(reader.read()));
+//        CDParserExecutor.execute(parser,writer);
     }
 }
 

@@ -5,5 +5,5 @@ import com.delphi.app.data.AbstractColumnData;
 import java.util.List;
 
 public interface Parser {
-    List<? extends AbstractColumnData> append();
+    List<? extends AbstractColumnData> parse();
 }

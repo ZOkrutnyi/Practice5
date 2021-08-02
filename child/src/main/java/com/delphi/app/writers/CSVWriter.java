@@ -6,10 +6,11 @@ import java.io.IOException;
 class CSVWriter implements Writer {
     private static final char DELIMITER = ';';
     private final String filepath;
-    protected CSVWriter(String filepath)
-    {
+
+    protected CSVWriter(String filepath) {
         this.filepath = filepath;
     }
+
     @Override
     public void write(String[] strings) {
         try (FileWriter fw = new FileWriter(filepath, true)) {
@@ -21,4 +22,4 @@ class CSVWriter implements Writer {
             e.printStackTrace();
         }
     }
-    }
+}

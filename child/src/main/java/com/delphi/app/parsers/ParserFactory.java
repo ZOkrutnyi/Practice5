@@ -8,7 +8,7 @@ public class ParserFactory {
     }
     public Parser createParser()
     {
-        if(filepath.contains("CD.xml"))
+        if(filepath.contains(".xml"))
             return new XMLParserCD(filepath);
         else throw new IllegalArgumentException("Parser format not recognised");
     }

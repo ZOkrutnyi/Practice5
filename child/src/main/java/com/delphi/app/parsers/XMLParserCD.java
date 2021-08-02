@@ -23,7 +23,7 @@ class XMLParserCD implements Parser {
         this.filepath = filepath;
     }
 
-    public List<CD> append() {
+    public List<CD> parse() {
         List<CD> cds = new ArrayList<>();
         try {
             File fXmlFile = new File(filepath);
