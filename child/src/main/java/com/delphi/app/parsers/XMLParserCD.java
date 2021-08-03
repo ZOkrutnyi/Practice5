@@ -1,55 +1,68 @@
 package com.delphi.app.parsers;
 
+import com.delphi.app.data.AbstractColumnData;
 import com.delphi.app.data.CD;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+import com.delphi.app.readers.Reader;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 class XMLParserCD implements Parser {
-    private final String filepath;
+    private final Reader reader;
 
-    protected XMLParserCD(String filepath) {
-        this.filepath = filepath;
+    protected XMLParserCD(Reader reader) {
+        this.reader = reader;
     }
 
-    public List<CD> parse() {
-        List<CD> cds = new ArrayList<>();
-        try {
-            File fXmlFile = new File(filepath);
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(fXmlFile);
-            doc.getDocumentElement().normalize();
-            NodeList nList = doc.getElementsByTagName("CD");
+    //<CD>[\\s\\S]*?<\\/CD>
+    //<CD.*>((.|\n)*?)<\/CD>
+    @Override
+    public List<? extends AbstractColumnData> parse() {
+        List<AbstractColumnData> cds = new ArrayList<>();
+        CD cd;
+        Pattern pattern = Pattern.compile("<CD>[\\s\\S]*?<\\/CD>");
+        Matcher matcher = pattern.matcher(reader.byteToString(reader.read()));
+        Matcher tagMatcher;
+        while (matcher.find()) {
+            cd = new CD();
+            tagMatcher = getPatterns()[0].matcher(matcher.group());
+            tagMatcher.find();
+            cd.setTitle(tagMatcher.group(1));
 
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-                Node nNode = nList.item(temp);
-                CD cd = new CD();
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element eElement = (Element) nNode;
-                    cd.setTitle(eElement.getElementsByTagName("TITLE").item(0).getTextContent());
-                    cd.setArtist(eElement.getElementsByTagName("ARTIST").item(0).getTextContent());
-                    cd.setCountry(eElement.getElementsByTagName("COUNTRY").item(0).getTextContent());
-                    cd.setCompany(eElement.getElementsByTagName("COMPANY").item(0).getTextContent());
-                    cd.setPrice(eElement.getElementsByTagName("PRICE").item(0).getTextContent() + "$");
-                    cd.setYear(LocalDate.ofYearDay(Integer.parseInt(eElement.getElementsByTagName("YEAR").item(0).getTextContent()), 21));
-                    cds.add(cd);
-                }
-            }
-        } catch (ParserConfigurationException | SAXException | IOException e) {
-            e.printStackTrace();
+            tagMatcher = getPatterns()[1].matcher(matcher.group());
+            tagMatcher.find();
+            cd.setArtist(tagMatcher.group(1));
+
+            tagMatcher = getPatterns()[2].matcher(matcher.group());
+            tagMatcher.find();
+            cd.setCountry(tagMatcher.group(1));
+
+            tagMatcher = getPatterns()[3].matcher(matcher.group());
+            tagMatcher.find();
+            cd.setCompany(tagMatcher.group(1));
+
+            tagMatcher = getPatterns()[4].matcher(matcher.group());
+            tagMatcher.find();
+            cd.setPrice(tagMatcher.group(1));
+
+            tagMatcher = getPatterns()[5].matcher(matcher.group());
+            tagMatcher.find();
+            cd.setYear(tagMatcher.group(1));
+            cds.add(cd);
         }
         return cds;
+    }
+
+    private Pattern[] getPatterns() {
+        Pattern[] content = new Pattern[6];
+        content[0] = Pattern.compile("<TITLE>(.+?)<\\/TITLE>");
+        content[1] = Pattern.compile("<ARTIST>(.+?)<\\/ARTIST>");
+        content[2] = Pattern.compile("<COUNTRY>(.+?)<\\/COUNTRY>");
+        content[3] = Pattern.compile("<COMPANY>(.+?)<\\/COMPANY>");
+        content[4] = Pattern.compile("<PRICE>(.+?)<\\/PRICE>");
+        content[5] = Pattern.compile("<YEAR>(.+?)<\\/YEAR>");
+        return content;
     }
 }

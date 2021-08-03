@@ -17,12 +17,12 @@ public class Main {
     public static void main(String[] args) {
         ReaderFactory readerFactory = new ReaderFactory(XML_FILE_PATH);
         Reader reader = readerFactory.createReader();
-        ParserFactory parserFactory = new ParserFactory(XML_FILE_PATH);
+        ParserFactory parserFactory = new ParserFactory(reader);
         Parser parser = parserFactory.createParser();
         WriterFactory writerFactory = new WriterFactory(CSV_FILE_PATH);
         Writer writer = writerFactory.createWriter();
-        System.out.println(reader.byteToString(reader.read()));
-//        CDParserExecutor.execute(parser,writer);
+//        System.out.println(reader.byteToString(reader.read()));
+        CDParserExecutor.execute(parser,writer);
     }
 }
 

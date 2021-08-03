@@ -8,6 +8,11 @@ public class XMLReader implements Reader {
     private final String filepath;
 
     XMLReader(String filepath) {
+        try {
+            System.setErr(new PrintStream("log.txt"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         this.filepath = filepath;
     }
 
@@ -21,7 +26,7 @@ public class XMLReader implements Reader {
                 byteArray.add((byte) br.read());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("XML Reader read error");
         }
         return byteArray;
     }

@@ -1,15 +1,15 @@
 package com.delphi.app.parsers;
 
+import com.delphi.app.readers.Reader;
+
 public class ParserFactory {
-    private final String filepath;
-    public ParserFactory(String filepath)
-    {
-        this.filepath = filepath;
+    private final Reader reader;
+
+    public ParserFactory(Reader reader) {
+        this.reader = reader;
     }
-    public Parser createParser()
-    {
-        if(filepath.contains(".xml"))
-            return new XMLParserCD(filepath);
-        else throw new IllegalArgumentException("Parser format not recognised");
+
+    public Parser createParser() {
+        return new XMLParserCD(reader);
     }
 }

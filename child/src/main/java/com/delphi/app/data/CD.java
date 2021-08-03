@@ -1,6 +1,5 @@
 package com.delphi.app.data;
 
-import java.time.LocalDate;
 
 public class CD extends AbstractColumnData {
     @Column(name = "TITLE", order = 1, type = "String")
@@ -14,7 +13,7 @@ public class CD extends AbstractColumnData {
     @Column(name = "PRICE", order = 5, type = "Money")
     private String price;
     @Column(name = "YEAR", order = 6, type = "LocalDate")
-    private LocalDate year;
+    private String year;
 
     public void setCompany(String company) {
         this.company = company;
@@ -36,7 +35,7 @@ public class CD extends AbstractColumnData {
         this.price = price;
     }
 
-    public void setYear(LocalDate year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
