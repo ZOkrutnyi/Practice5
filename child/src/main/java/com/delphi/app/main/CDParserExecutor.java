@@ -8,7 +8,7 @@ public class CDParserExecutor {
     private CDParserExecutor() {
     }
 
-    public static void execute(Parser parser, Writer writer) {
+    public static void execute(Parser<? extends AbstractColumnData> parser, Writer writer) {
         for (AbstractColumnData ab : parser.parse()) {
             writer.write(ab.getRow());
         }

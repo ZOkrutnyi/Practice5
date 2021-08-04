@@ -1,5 +1,6 @@
 package com.delphi.app.parsers;
 
+import com.delphi.app.data.AbstractColumnData;
 import com.delphi.app.readers.Reader;
 
 public class ParserFactory {
@@ -9,7 +10,7 @@ public class ParserFactory {
         this.reader = reader;
     }
 
-    public Parser createParser() {
+    public Parser<? extends AbstractColumnData> createParser() {
         return new XMLParserCD(reader);
     }
 }

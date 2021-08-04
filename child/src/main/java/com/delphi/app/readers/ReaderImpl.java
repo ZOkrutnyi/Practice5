@@ -3,17 +3,27 @@ package com.delphi.app.readers;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class XMLReader implements Reader {
+public class ReaderImpl implements Reader {
     private final String filepath;
+    Logger logger = Logger.getLogger(this.getClass().getName());
+    FileHandler fileHandler;
 
-    XMLReader(String filepath) {
+    public ReaderImpl(String filepath) {
         try {
-            System.setErr(new PrintStream("log.txt"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        this.filepath = filepath;
+        fileHandler = new FileHandler(this.getClass().getSimpleName()+".log",true);
+        logger.addHandler(fileHandler);
+    } catch (IOException e) {
+        logger.log(Level.INFO,"initialize handler error");
+    }
+        if(filepath.contains(".xml")) {
+            this.filepath = filepath;
+        } else
+            logger.log(Level.INFO,"Illegal format type, reader cannot be initialize");
+        throw new RuntimeException();
     }
 
     @Override
@@ -26,7 +36,7 @@ public class XMLReader implements Reader {
                 byteArray.add((byte) br.read());
             }
         } catch (IOException e) {
-            System.err.println("XML Reader read error");
+            logger.log(Level.INFO, "read method failed to read");
         }
         return byteArray;
     }

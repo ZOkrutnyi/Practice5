@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-08-04T15:10:02</date>
+  <millis>1628079002042</millis>
+  <sequence>0</sequence>
+  <logger>com.delphi.app.readers.ReaderImpl</logger>
+  <level>INFO</level>
+  <class>com.delphi.app.readers.ReaderImpl</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>Illegal format type, reader cannot be initialize</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-08-04T15:12:20</date>
+  <millis>1628079140184</millis>
+  <sequence>0</sequence>
+  <logger>com.delphi.app.readers.ReaderImpl</logger>
+  <level>INFO</level>
+  <class>com.delphi.app.readers.ReaderImpl</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>Illegal format type, reader cannot be initialize</message>
+</record>
+</log>
