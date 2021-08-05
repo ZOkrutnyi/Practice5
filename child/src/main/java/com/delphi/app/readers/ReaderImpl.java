@@ -12,15 +12,13 @@ public class ReaderImpl implements Reader {
     Logger logger = Logger.getLogger(this.getClass().getName());
     FileHandler fileHandler;
 
-    public ReaderImpl(String filepath) {
-        this.filepath = filepath;
+    public ReaderImpl(String filePath) {
+        this.filepath = filePath;
         try {
-            if(!new File(this.getClass().getSimpleName() + ".log").exists()) {
                 fileHandler = new FileHandler(this.getClass().getSimpleName() + ".log", true);
                 logger.addHandler(fileHandler);
-            }
         } catch (IOException e) {
-            logger.log(Level.INFO, "initialize handler error");
+            logger.info("initialize handler error");
         }
     }
 
