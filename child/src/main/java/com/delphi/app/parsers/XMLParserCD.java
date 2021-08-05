@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class XMLParserCD implements Parser<CD> {
+public class XMLParserCD implements Parser<CD> {
     private final Reader reader;
 
-    protected XMLParserCD(Reader reader) {
+    public XMLParserCD(Reader reader) {
         this.reader = reader;
     }
 

@@ -1,10 +1,10 @@
 package com.delphi.app.main;
 
 import com.delphi.app.data.AbstractColumnData;
-import com.delphi.app.parsers.*;
-import com.delphi.app.readers.Reader;
-import com.delphi.app.readers.ReaderImpl;
-import com.delphi.app.writers.*;
+import com.delphi.app.factory.AbstractFactory;
+import com.delphi.app.factory.XMLFactory;
+import com.delphi.app.parsers.Parser;
+import com.delphi.app.writers.Writer;
 
 public class Main {
     @SuppressWarnings("unused")
@@ -17,11 +17,9 @@ public class Main {
 
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
-        Reader reader = new ReaderImpl(XLS_FILE_PATH);
-        ParserFactory parserFactory = new ParserFactory(reader);
-        Parser<? extends AbstractColumnData> parser = parserFactory.createParser();
-        WriterFactory writerFactory = new WriterFactory(CSV_FILE_PATH);
-        Writer writer = writerFactory.createWriter();
+        AbstractFactory xmlFactory = new XMLFactory(XML_FILE_PATH,CSV_FILE_PATH);
+        Parser<? extends AbstractColumnData> parser = xmlFactory.createParser();
+        Writer writer = xmlFactory.createWriter();
         CDParserExecutor.execute(parser, writer);
         System.out.println(System.currentTimeMillis() - start);
     }

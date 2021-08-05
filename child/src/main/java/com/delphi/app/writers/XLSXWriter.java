@@ -5,13 +5,23 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-class XLSXWriter implements Writer {
+public class XLSXWriter implements Writer {
     private static final int START_POINT = 0;
     private final String filepath;
-    protected XLSXWriter(String filepath)
-    {
+    Logger logger = Logger.getLogger(this.getClass().getSimpleName());
+
+    public XLSXWriter(String filepath) {
         this.filepath = filepath;
+        try {
+            FileHandler fileHandler = new FileHandler(this.getClass().getSimpleName() + ".log");
+            logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            logger.log(Level.INFO, "failed to create file handler");
+        }
     }
 
     @Override
@@ -32,7 +42,7 @@ class XLSXWriter implements Writer {
             XSSFSheet sheet = cdBook.getSheetAt(START_POINT);
             write(arr, cdBook, outputFile, sheet);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.FINE, "failed to write to cell method");
         }
     }
 
@@ -44,7 +54,7 @@ class XLSXWriter implements Writer {
             XSSFSheet sheet = workbook.createSheet();
             write(arr, workbook, outputStream, sheet);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.FINE, "method write at the beginning failed");
         }
     }
 

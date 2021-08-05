@@ -13,17 +13,15 @@ public class ReaderImpl implements Reader {
     FileHandler fileHandler;
 
     public ReaderImpl(String filepath) {
+        this.filepath = filepath;
         try {
-        fileHandler = new FileHandler(this.getClass().getSimpleName()+".log",true);
-        logger.addHandler(fileHandler);
-    } catch (IOException e) {
-        logger.log(Level.INFO,"initialize handler error");
-    }
-        if(filepath.contains(".xml")) {
-            this.filepath = filepath;
-        } else
-            logger.log(Level.INFO,"Illegal format type, reader cannot be initialize");
-        throw new RuntimeException();
+            if(!new File(this.getClass().getSimpleName() + ".log").exists()) {
+                fileHandler = new FileHandler(this.getClass().getSimpleName() + ".log", true);
+                logger.addHandler(fileHandler);
+            }
+        } catch (IOException e) {
+            logger.log(Level.INFO, "initialize handler error");
+        }
     }
 
     @Override
@@ -44,8 +42,8 @@ public class ReaderImpl implements Reader {
     @Override
     public String byteToString(List<Byte> list) {
         StringBuilder sb = new StringBuilder();
-        for (byte b: list) {
-            if(b == '\n')
+        for (byte b : list) {
+            if (b == '\n')
                 sb.append('\n');
             else
                 sb.append((char) b);
