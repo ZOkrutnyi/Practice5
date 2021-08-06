@@ -4,7 +4,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.FileHandler;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ReaderImpl implements Reader {
@@ -17,6 +16,9 @@ public class ReaderImpl implements Reader {
         try {
                 fileHandler = new FileHandler(this.getClass().getSimpleName() + ".log", true);
                 logger.addHandler(fileHandler);
+                if(!new File(filePath).exists()) {
+                    logger.info(String.format("File: %s could not be found", filePath));
+                }
         } catch (IOException e) {
             logger.info("initialize handler error");
         }
@@ -32,7 +34,7 @@ public class ReaderImpl implements Reader {
                 byteArray.add((byte) br.read());
             }
         } catch (IOException e) {
-            logger.log(Level.INFO, "read method failed to read");
+            logger.info("read method failed to read");
         }
         return byteArray;
     }

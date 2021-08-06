@@ -1,7 +1,6 @@
 package com.delphi.app.parsers;
 
 import com.delphi.app.data.CD;
-import com.delphi.app.readers.Reader;
 
 import java.util.ArrayList;
 import java.util.List;

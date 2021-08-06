@@ -146,10 +146,12 @@ _
 f
 6child/src/main/java/com/delphi/app/writers/Writer.java,3\a\3ad36ebb39ec8d4c2d72176d813d29f5c88c76d6
 i
-9child/src/main/java/com/delphi/app/writers/CSVWriter.java,8\d\8df1e06731c5b99ab651ee6997c2596fa4ae09a7
-i
 9child/src/main/java/com/delphi/app/writers/XLSWriter.java,8\a\8a16464bdcfa41e7a8d0aa90a827a8764a244820
 j
 :child/src/main/java/com/delphi/app/writers/XLSXWriter.java,4\0\40fd96222482dac2f5e95e209e25eab8eed8bd30
 =
 CSVWriter.log,a\6\a608944499a78e22d3ab34c0eb71923bef36fb1f
+g
+7child/src/main/java/com/delphi/app/parsers/FieldCD.java,9\3\93d9a71c4a3040bc1d82031292f19ac088551b19
+f
+6child/src/main/java/com/delphi/app/parsers/Parser.java,e\0\e04f09ae8b4397129a67a080f78a6e680fd5f800
