@@ -1,5 +1,7 @@
 package com.delphi.app.writers;
 
+import com.delphi.app.loggers.LoggerHandler;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.FileHandler;
@@ -10,17 +12,12 @@ public class XLSWriter implements Writer {
 
     private static final char DELIMITER = '\t';
     private final String filepath;
-    Logger logger = Logger.getLogger(this.getClass().getSimpleName());
+    LoggerHandler logHandler = new LoggerHandler();
+    Logger logger = logHandler.createLogger();
 
     public XLSWriter(String filepath)
     {
         this.filepath = filepath;
-        try {
-            FileHandler fileHandler = new FileHandler(this.getClass().getSimpleName()+".log");
-            logger.addHandler(fileHandler);
-        } catch (IOException e) {
-            logger.log(Level.INFO,"failed to create file handler");
-        }
     }
 
     @Override

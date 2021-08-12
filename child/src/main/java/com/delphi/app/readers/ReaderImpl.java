@@ -1,27 +1,19 @@
 package com.delphi.app.readers;
 
+import com.delphi.app.loggers.LoggerHandler;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
 public class ReaderImpl implements Reader {
     private final String filepath;
-    Logger logger = Logger.getLogger(this.getClass().getName());
-    FileHandler fileHandler;
+    LoggerHandler logHandler = new LoggerHandler();
+    Logger logger = logHandler.createLogger();
 
     public ReaderImpl(String filePath) {
         this.filepath = filePath;
-        try {
-                fileHandler = new FileHandler(this.getClass().getSimpleName() + ".log", true);
-                logger.addHandler(fileHandler);
-                if(!new File(filePath).exists()) {
-                    logger.info(String.format("File: %s could not be found", filePath));
-                }
-        } catch (IOException e) {
-            logger.info("initialize handler error");
-        }
     }
 
     @Override

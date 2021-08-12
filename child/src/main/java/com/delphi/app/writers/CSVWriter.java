@@ -2,7 +2,6 @@ package com.delphi.app.writers;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,12 +12,6 @@ public class CSVWriter implements Writer {
 
     public CSVWriter(String filepath) {
         this.filepath = filepath;
-        try {
-            FileHandler fileHandler = new FileHandler(this.getClass().getSimpleName()+".log");
-            logger.addHandler(fileHandler);
-        } catch (IOException e) {
-            logger.log(Level.INFO,"failed to create file handler");
-        }
     }
 
     @Override

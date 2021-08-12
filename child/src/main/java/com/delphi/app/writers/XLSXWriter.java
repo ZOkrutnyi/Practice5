@@ -1,27 +1,22 @@
 package com.delphi.app.writers;
 
+import com.delphi.app.loggers.LoggerHandler;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class XLSXWriter implements Writer {
     private static final int START_POINT = 0;
     private final String filepath;
-    Logger logger = Logger.getLogger(this.getClass().getSimpleName());
+    LoggerHandler logHandler = new LoggerHandler();
+    Logger logger = logHandler.createLogger();
 
     public XLSXWriter(String filepath) {
         this.filepath = filepath;
-        try {
-            FileHandler fileHandler = new FileHandler(this.getClass().getSimpleName() + ".log");
-            logger.addHandler(fileHandler);
-        } catch (IOException e) {
-            logger.log(Level.INFO, "failed to create file handler");
-        }
     }
 
     @Override

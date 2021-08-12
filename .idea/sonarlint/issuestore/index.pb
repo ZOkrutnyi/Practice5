@@ -122,8 +122,6 @@ c
 g
 7.idea/libraries/Maven__xml_apis_xml_apis_ext_1_3_04.xml,9\5\95b3369e5accd163b9c0af2c336c324f5d45524e
 =
-Practice5.iml,6\c\6c70a4b745b84eaaec2d0022035aa227558fd5a0
-=
 child/pom.xml,7\5\7549128aef84b129beb2a28663f0991dc608236a
 c
 3child/src/main/java/com/delphi/app/data/Column.java,c\9\c955eb0909c4fd09813f8f7373882c7dc1fcf104
@@ -137,21 +135,11 @@ G
 sequence_diagram.drawio,1\d\1dfb0b02cf35439bda427c11fa1e386f952b0feb
 >
 catalog_CD.xml,4\c\4c1c4d02dca80e6b2d685ba0f228f0c49da4590e
-f
-6child/src/main/java/com/delphi/app/readers/Reader.java,7\5\75fd9b6c86c973c601c289ef0a0a62b9ab083e68
-o
-?child/src/main/java/com/delphi/app/data/AbstractColumnData.java,1\7\17437ff7a6d3c89eb5c1c0b6356ec81061a7165f
 _
 /child/src/main/java/com/delphi/app/data/CD.java,4\5\4537526492195583a997dc45ca90ea240eac210c
 f
-6child/src/main/java/com/delphi/app/writers/Writer.java,3\a\3ad36ebb39ec8d4c2d72176d813d29f5c88c76d6
-i
-9child/src/main/java/com/delphi/app/writers/XLSWriter.java,8\a\8a16464bdcfa41e7a8d0aa90a827a8764a244820
-j
-:child/src/main/java/com/delphi/app/writers/XLSXWriter.java,4\0\40fd96222482dac2f5e95e209e25eab8eed8bd30
-=
-CSVWriter.log,a\6\a608944499a78e22d3ab34c0eb71923bef36fb1f
-g
-7child/src/main/java/com/delphi/app/parsers/FieldCD.java,9\3\93d9a71c4a3040bc1d82031292f19ac088551b19
-f
 6child/src/main/java/com/delphi/app/parsers/Parser.java,e\0\e04f09ae8b4397129a67a080f78a6e680fd5f800
+o
+?child/src/main/java/com/delphi/app/data/AbstractColumnData.java,1\7\17437ff7a6d3c89eb5c1c0b6356ec81061a7165f
+D
+child/catalog_CD.xml,c\7\c7dd439eb5b4024309c59dbd6604a48458f55b2b
