@@ -29,15 +29,10 @@ public class XMLParserCD implements Parser {
     }
 
     private String getAttribute(Matcher matcher, FieldCD field) {
-        Matcher tagMatcher = getPatterns()[field.ordinal()].matcher(matcher.group());
+        Matcher tagMatcher = Pattern.compile(
+                 String.format("<%s>(.+?)</%s>",field.name(),field.name()))
+                .matcher(matcher.group());
         return tagMatcher.find() ? tagMatcher.group(1) : "null";
     }
 
-    private Pattern[] getPatterns() {
-        Pattern[] content = new Pattern[FieldCD.values().length];
-        for (int i = 0; i < content.length; i++) {
-            content[i] = Pattern.compile("<" + FieldCD.values()[i] + ">" + "(.+?)</" + FieldCD.values()[i] + ">");
-        }
-        return content;
-    }
 }

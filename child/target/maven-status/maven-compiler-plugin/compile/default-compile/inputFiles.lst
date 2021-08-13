@@ -6,7 +6,9 @@ D:\javaProjects\Task5\child\src\main\java\com\delphi\app\writers\Writer.java
 D:\javaProjects\Task5\child\src\main\java\com\delphi\app\main\Main.java
 D:\javaProjects\Task5\child\src\main\java\com\delphi\app\writers\CSVWriter.java
 D:\javaProjects\Task5\child\src\main\java\com\delphi\app\data\CD.java
+D:\javaProjects\Task5\child\src\main\java\com\delphi\app\loggers\LoggerHandler.java
 D:\javaProjects\Task5\child\src\main\java\com\delphi\app\parsers\Parser.java
+D:\javaProjects\Task5\child\src\main\java\com\delphi\app\loggers\AbstractLogger.java
 D:\javaProjects\Task5\child\src\main\java\com\delphi\app\factory\AbstractFactory.java
 D:\javaProjects\Task5\child\src\main\java\com\delphi\app\main\CDParserExecutor.java
 D:\javaProjects\Task5\child\src\main\java\com\delphi\app\data\Column.java

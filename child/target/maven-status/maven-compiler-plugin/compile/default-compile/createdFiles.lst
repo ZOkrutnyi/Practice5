@@ -1,5 +1,6 @@
 com\delphi\app\factory\FactoryXML.class
 com\delphi\app\writers\Writer.class
+com\delphi\app\loggers\AbstractLogger.class
 com\delphi\app\readers\Reader.class
 com\delphi\app\factory\AbstractFactory.class
 com\delphi\app\writers\XLSXWriter.class
@@ -8,6 +9,7 @@ com\delphi\app\data\Column.class
 com\delphi\app\main\Main.class
 com\delphi\app\main\CDParserExecutor.class
 com\delphi\app\parsers\XMLParserCD.class
+com\delphi\app\loggers\LoggerHandler.class
 com\delphi\app\data\AbstractColumnData.class
 com\delphi\app\parsers\FieldCD.class
 com\delphi\app\data\CD.class
